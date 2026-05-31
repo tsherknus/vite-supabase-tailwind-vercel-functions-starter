@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: supabase/setup-cli@v1
+      - uses: supabase/setup-cli@v2
         with:
-          version: 1.0.0
+          version: 2.101.0
       - run: supabase functions deploy stripe-webhook --project-ref $PROJECT_ID --no-verify-jwt

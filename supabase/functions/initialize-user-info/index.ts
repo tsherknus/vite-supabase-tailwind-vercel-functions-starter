@@ -16,12 +16,6 @@ Deno.serve(async (req) => {
   try {
     const { data } = await req.json();
 
-    console.log(data);
-
-    console.log(Deno.env.get("SUPABASE_URL"));
-
-    console.log(Deno.env.get("SUPABASE_ANON_KEY"));
-
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
 
