@@ -31,11 +31,16 @@ Deno.serve(async (req) => {
 
     const priceId = PRICE_IDS[data.tier]
 
+    if (!priceId) {
+      throw new Error("price id mismatch or missing, malicious intent");
+    }
+
     const stripeResponse = await stripe.checkout.sessions.create({
       line_items: [{price: priceId, quantity: 1}],
       customer_email: data.email,
       metadata: {
         user_id: data.userid,
+        price_id: priceId,
       },
       mode: 'subscription',
       success_url: `${hostName}/verify-email`,
