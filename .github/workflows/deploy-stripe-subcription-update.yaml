@@ -1,0 +1,19 @@
+name: Deploy Stripe Subscription Update
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      PROJECT_ID: uzwqeithzlrhvccnjzbn
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: supabase/setup-cli@v1
+        with:
+          version: 2.101.0
+      - run: supabase functions deploy stripe-update-subscription --project-ref $PROJECT_ID --no-verify-jwt
